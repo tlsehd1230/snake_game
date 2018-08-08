@@ -1,3 +1,4 @@
+import time
 import pygame
 import random
 from color import *
@@ -32,6 +33,7 @@ def main() :
     random_X = random.randrange(0, (display_width / block_size) // 1) * block_size
     random_Y = random.randrange(0, (display_height / block_size) // 1) * block_size
     total_score = 0
+    t2 = time.time()
 
     while not gameTerminate :
         if gameover :
@@ -73,22 +75,26 @@ def main() :
                     gameTerminate = True
 
                 if event.type == pygame.KEYDOWN :
-                    if event.key == pygame.K_UP and speed_Y == 0 :
+                    if event.key == pygame.K_UP and speed_Y == 0 and time.time() - t2 > 0.01:
+                        t2 = time.time()
                         started = True
                         speed_X = 0
                         speed_Y = -block_size
 
-                    if event.key == pygame.K_DOWN and speed_Y == 0 :
+                    if event.key == pygame.K_DOWN and speed_Y == 0 and time.time() - t2 > 0.01:
+                        t2 = time.time()
                         started = True
                         speed_X = 0
                         speed_Y = block_size
 
-                    if event.key == pygame.K_LEFT and speed_X == 0 :
+                    if event.key == pygame.K_LEFT and speed_X == 0 and time.time() - t2 > 0.01:
+                        t2 = time.time()
                         started = True
                         speed_X = -block_size
                         speed_Y = 0
 
-                    if event.key == pygame.K_RIGHT and speed_X == 0 :
+                    if event.key == pygame.K_RIGHT and speed_X == 0 and time.time() - t2 > 0.01:
+                        t2 = time.time()
                         started = True
                         speed_X = block_size
                         speed_Y = 0
